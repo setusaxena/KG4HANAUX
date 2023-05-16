@@ -1,0 +1,141 @@
+<mvc:View controllerName="com.kg4hana.NavigationUI.controller.Home" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core"
+	xmlns:layout="sap.suite.ui.commons.networkgraph.layout" xmlns:table="sap.ui.table" xmlns:networkgraph="sap.suite.ui.commons.networkgraph"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" displayBlock="true">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="pageHome" title="{i18n>title}">
+					<content>
+						<table:Table id="table" selectionMode="MultiToggle" rows="{/ProductCollection}" visibleRowCount="7" enableCellFilter="{ui>/cellFilterOn}"
+							filter="filterPrice" ariaLabelledBy="title">
+							<table:extension>
+								<OverflowToolbar style="Clear">
+									<SearchField placeholder="Filter" value="{ui>/globalFilter}" search="filterGlobally" width="15rem"/>
+									<ToolbarSeparator/>
+									<CheckBox id="chckIncludeAssociation" select="pressIncludeAssociation" selected="true"></CheckBox>
+									<Title id="title" text="Include Associations"/>
+									<ToolbarSpacer/>
+									<ToggleButton icon="sap-icon://complete" tooltip="Show available products only" press="toggleAvailabilityFilter"
+										pressed="{ui>/availabilityFilterOn}"/>
+									<ToggleButton icon="sap-icon://grid" tooltip="Enable / Disable Cell Filter Functionality" pressed="{ui>/cellFilterOn}"/>
+									<Button icon="sap-icon://decline" tooltip="Clear all filters" press="clearAllFilters"/>
+								</OverflowToolbar>
+							</table:extension>
+							<table:columns>
+								<table:Column width="11rem" filterProperty="Category" defaultFilterOperator="StartsWith">
+									<Label text="Entity Type"/>
+									<table:template>
+										<Text text="{Category}" wrapping="false"/>
+									</table:template>
+								</table:Column>
+								<table:Column width="11rem" filterProperty="Name">
+									<Label text="Entity Name"/>
+									<table:template>
+										<Text text="{Name}" wrapping="false"/>
+									</table:template>
+								</table:Column>
+								<table:Column width="40rem">
+									<Label text="Semantic Keys"/>
+									<table:template>
+										<Text text="{SupplierName}"/>
+									</table:template>
+								</table:Column>
+								<table:Column id="availability" width="11rem" filterProperty="Available" showFilterMenuEntry="false" defaultFilterOperator="EQ"
+									filterType="sap.ui.model.type.Boolean">
+									<Label text="Actions"/>
+									<table:template>
+										<HBox>
+											<Button icon="sap-icon://database" type="Emphasized"></Button>
+											<VBox width="5px"/>
+											<Button icon="sap-icon://org-chart" press="navigateToGraph" type="Emphasized"></Button>
+											<VBox width="5px"/>
+											<Button icon="sap-icon://information" press="navigateToGraphEmp" type="Emphasized"></Button>
+											<VBox width="5px"/>
+											<Button icon="sap-icon://feeder-arrow"></Button>
+										</HBox>
+									</table:template>
+								</table:Column>
+							</table:columns>
+							<table:footer>
+								<OverflowToolbar id="infobar"></OverflowToolbar>
+							</table:footer>
+						</table:Table>
+					</content>
+				</Page>
+				<Page id="pageGraph" title="{i18n>title}" showNavButton="true" navButtonPress="backToHome">
+					<content>
+						<!--<Button text="Navigated"></Button>-->
+						<networkgraph:Graph enableWheelZoom="false" orientation="TopBottom" nodes="{/nodes}" lines="{/lines}" layout="Layered"
+							searchSuggest="suggest" search="search" id="graph">
+							<networkgraph:layoutAlgorithm>
+								<layout:LayeredLayout mergeEdges="true" nodePlacement="Simple" nodeSpacing="40"/>
+							</networkgraph:layoutAlgorithm>
+							<networkgraph:nodes>
+								<networkgraph:Node icon="{iconCode}" key="{id}" description="{title}" title="{title}" status="{status}" width="90" collapsed="{collapsed}"
+									attributes="{attributes}" showActionLinksButton="false" showDetailButton="false" descriptionLineSize="0" shape="Box">
+									<networkgraph:customData>
+										<core:CustomData key="supervisor" value="{supervisor}"/>
+										<core:CustomData key="team" value="{team}"/>
+										<core:CustomData key="location" value="{location}"/>
+										<core:CustomData key="position" value="{position}"/>
+										<core:CustomData key="team" value="{team}"/>
+										<core:CustomData key="email" value="{email}"/>
+										<core:CustomData key="phone" value="{phone}"/>
+									</networkgraph:customData>
+									<networkgraph:attributes>
+										<networkgraph:ElementAttribute label="{label}" value="{value}" icon="{iconCode}"/>
+									</networkgraph:attributes>
+									<!--<networkgraph:image>-->
+									<!--	<networkgraph:NodeImage src="{src}" width="80" height="100"/>-->
+									<!--</networkgraph:image>-->
+								</networkgraph:Node>
+							</networkgraph:nodes>
+							<networkgraph:lines>
+								<networkgraph:Line from="{from}" to="{to}" arrowOrientation="None" press="linePress"/>
+							</networkgraph:lines>
+						</networkgraph:Graph>
+						<!--<networkgraph:GraphMap id="map" graph="graph">-->
+						<!--	<networkgraph:layoutData>-->
+						<!--		<FlexItemData minWidth="200px" maxWidth="25%"/>-->
+						<!--	</networkgraph:layoutData>-->
+						<!--</networkgraph:GraphMap>-->
+					</content>
+				</Page>
+				<Page id="pageGraphEmp" title="{i18n>title}" showNavButton="true" navButtonPress="backToHome">
+					<content>
+						<!--<Button text="Navigated"></Button>-->
+						<networkgraph:Graph enableWheelZoom="false" orientation="TopBottom" nodes="{/nodes}" lines="{/lines}" layout="Layered"
+							searchSuggest="suggest" search="search" id="graphEmp">
+							<networkgraph:layoutAlgorithm>
+								<layout:LayeredLayout mergeEdges="true" nodePlacement="Simple" nodeSpacing="40"/>
+							</networkgraph:layoutAlgorithm>
+							<networkgraph:nodes>
+								<networkgraph:Node icon="{iconCode}" key="{id}" description="{title}" title="{title}" width="90" collapsed="{collapsed}"
+									attributes="{attributes}" showActionLinksButton="false" showDetailButton="false" descriptionLineSize="0" shape="Box">
+									<networkgraph:customData>
+										<core:CustomData key="supervisor" value="{supervisor}"/>
+										<core:CustomData key="team" value="{team}"/>
+										<core:CustomData key="location" value="{location}"/>
+										<core:CustomData key="position" value="{position}"/>
+										<core:CustomData key="team" value="{team}"/>
+										<core:CustomData key="email" value="{email}"/>
+										<core:CustomData key="phone" value="{phone}"/>
+									</networkgraph:customData>
+									<networkgraph:attributes>
+										<networkgraph:ElementAttribute label="{label}" value="{value}" icon="{iconCode}"/>
+									</networkgraph:attributes>
+									<networkgraph:image>
+										<networkgraph:NodeImage src="{src}" width="80" height="100"/>
+									</networkgraph:image>
+								</networkgraph:Node>
+							</networkgraph:nodes>
+							<networkgraph:lines>
+								<networkgraph:Line from="{from}" to="{to}" arrowOrientation="None" press="linePress"/>
+							</networkgraph:lines>
+						</networkgraph:Graph>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

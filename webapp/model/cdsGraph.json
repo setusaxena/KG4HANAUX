@@ -1,0 +1,125 @@
+{
+	"nodes": [{
+		"id": "Dinter",
+		"title": "C_PurchaseContractHdr",
+		"src": "./test-resources/sap/suite/ui/commons/demokit/images/people/female_IngallsB.jpg",
+		"attributes": [{
+			"label": 6,
+			"value": ""
+		}],
+		"team": 6,
+		"location": "Walldorf",
+		"position": "Global Solutions Manager",
+		"email": "sophie.dinter@example.com",
+		"phone": "+000 423 230 000",
+		"iconCode": "sap-icon://chart-table-view",
+		"status": "Warning"
+	}, {
+		"id": "Ninsei",
+		"title": "I_PurchaseContract",
+		"src": "./test-resources/sap/suite/ui/commons/demokit/images/people/male_GordonR.jpg",
+		"attributes": [{
+			"label": 5,
+			"value": ""
+		}],
+		"supervisor": "Dinter",
+		"team": 5,
+		"location": "Walldorf",
+		"position": "Lead Markets Manager",
+		"email": "yamasaki.ninsei@example.com",
+		"phone": "+000 423 230 002",
+		"iconCode": "sap-icon://chart-table-view",
+		"status": "Warning"
+	}, {
+		"id": "Binder",
+		"title": "R_PurchaseContract",
+		"src": "./test-resources/sap/suite/ui/commons/demokit/images/people/female_SummerS.jpg",
+		"attributes": [{
+			"label": 2,
+			"value": ""
+		}],
+		"supervisor": "Ninsei",
+		"team": 2,
+		"location": "Walldorf",
+		"position": "Sales Manager",
+		"email": "jasmin.binder@example.com",
+		"phone": "+000 423 230 009",
+		"iconCode": "sap-icon://chart-table-view",
+		"status": "Warning"
+	}, {
+		"id": "Doskocil",
+		"title": "R_PurchasingDocument",
+		"src": "./test-resources/sap/suite/ui/commons/demokit/images/people/male_SchulzJ.jpg",
+		"attributes": [{
+			"label": 1,
+			"value": ""
+		}],
+		"supervisor": "Binder",
+		"location": "Walldorf",
+		"position": "Vendor",
+		"email": "jiri.doskocil@example.com",
+		"phone": "+000 423 230 010",
+		"iconCode": "sap-icon://chart-table-view",
+		"status": "Warning"
+	}, {
+		"id": "Buttmann",
+		"title": "EKKO",
+		"src": "./test-resources/sap/suite/ui/commons/demokit/images/people/female_RushJ.jpg",
+		"supervisor": "Doskocil",
+		"location": "Walldorf",
+		"position": "Vendor",
+		"email": "rebecca.buttmann@example.com",
+		"phone": "+000 423 230 011",
+		"iconCode": "sap-icon://database",
+		"status": "Success"
+	}, {
+		"id": "Ortmann",
+		"title": "I_Supplier",
+		"src": "./test-resources/sap/suite/ui/commons/demokit/images/people/male_WallaceA.jpg",
+		"attributes": [{
+			"label": 1,
+			"value": ""
+		}],
+		"supervisor": "Ninsei",
+		"team": 1,
+		"location": "Brno",
+		"position": "Development Supervisor",
+		"email": "leo.ortmann@example.com",
+		"phone": "+000 423 235 012",
+		"iconCode": "sap-icon://chart-table-view",
+		"status": "Warning"
+	}, {
+		"id": "Traube",
+		"title": "LFA1",
+		"src": "./test-resources/sap/suite/ui/commons/demokit/images/people/i2.jpg",
+		"supervisor": "Ortmann",
+		"location": "Walldorf",
+		"position": "Development Consultant",
+		"email": "arnold.traube@example.com",
+		"phone": "+000 423 230 018",
+		"iconCode": "sap-icon://database",
+		"status": "Success"
+	}],
+	"lines": [
+
+		{
+			"from": "Doskocil",
+			"to": "Buttmann"
+		}, {
+			"from": "Binder",
+			"to": "Doskocil"
+		}, {
+			"from": "Ortmann",
+			"to": "Traube"
+		}, {
+			"from": "Ninsei",
+			"to": "Ortmann"
+		}, {
+			"from": "Dinter",
+			"to": "Ninsei"
+		}, {
+			"from": "Ninsei",
+			"to": "Binder"
+		}
+	]
+}
